@@ -12,6 +12,7 @@ class InputHandler {
         int size = scan.nextInt();
         return size;
     }
+    //Abdallh
 
     public static String getGuess() {
         return "";
@@ -65,6 +66,7 @@ class SecretColors{
 
     }
     Color[] getSecrateCode(){
+
         return colors;
     }
 }
