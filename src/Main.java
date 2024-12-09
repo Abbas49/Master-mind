@@ -1,9 +1,5 @@
-//                        ┏┓        ┓
-//                        ┗┓    ┓┏  ┃   ╋   ┏┓  ┏┓
-//                        ┗┛    ┗┻  ┗   ┗   ┗┻  ┛┗11
-
 import java.util.Scanner;
-// test24234234324
+
 class InputHandler {
     public static Scanner scan = new Scanner(System.in);
 
@@ -12,7 +8,6 @@ class InputHandler {
         int size = scan.nextInt();
         return size;
     }
-    //Abdallh
 
     public static String getGuess() {
         return "";
