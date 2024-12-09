@@ -1,3 +1,7 @@
+//                        ┏┓        ┓
+//                        ┗┓    ┓┏  ┃   ╋   ┏┓  ┏┓
+//                        ┗┛    ┗┻  ┗   ┗   ┗┻  ┛┗
+
 import java.util.Scanner;
 
 class InputHandler {
