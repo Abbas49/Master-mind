@@ -24,18 +24,18 @@ class InputHandler {
                  newStr=newStr + str.charAt(i);
             }
         }
-        if (str.length() != size) {
+        if (newStr.length() != size) {
             System.out.println("You should input " + size + " characters, try again.");
             return getValidGuessInput(size);
         }
         for (int i = 0; i < size; i++) {
-            char c = str.charAt(i);
+            char c = newStr.charAt(i);
             if (c != 'r' && c != 'g' && c != 'y' && c != 'b' && c != 'o' && c != 'p') {
                 System.out.println("The character " + c + " is not valid, try again.");
                 return getValidGuessInput(size);
             }
         }
-        return str;
+        return newStr;
     }
 
     public static Guess getGuess(int size) {
