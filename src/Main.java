@@ -1,5 +1,5 @@
-import java.util.Scanner;
-// ali
+import java.util.*;
+
 class InputHandler {
     public static Scanner scan = new Scanner(System.in);
 
@@ -42,28 +42,48 @@ class MasterMind{
         return 0;
     }
 }
-class Color{
+class Color {
+    public static Color red, green, yellow, blue, brown, purple;
+
     public int id;
-    public int name;
-    Color(int id, int name){
+    public String name;
+
+    Color(int id, String name) {
         this.id = id;
         this.name = name;
     }
+    public String toString() {
+        return name;
+    }
+    // color
+    static {
+        red = new Color(0, "Red");
+        green = new Color(1, "Green");
+        yellow = new Color(2, "Yellow");
+        blue = new Color(3, "Blue");
+        brown = new Color(4, "Brown");
+        purple = new Color(5, "Purple");
+    }
 }
-// array of colors
-class SecretColors{
-    private Color[] colors;
-    SecretColors(int size){
-        colors = new Color[size];
-        generateRandom();
-    }
-    void generateRandom(){
-
-    }
-    Color[] getSecrateCode(){
-
+class SecretColors {
+    private Color[] colors; 
+    private static final Color[] COLORS ={
+    Color.red,Color.green,Color.yellow,Color.blue,Color.brown,Color.purple
+    }; 
+    public SecretColors(int size){
+    colors = new Color[size];
+      generateRandom();}
+    
+    private void generateRandom(){
+     Random random = new Random();
+ 
+   for(int i = 0 ; i < colors.length ; i++){
+   colors[i]=COLORS[random.nextInt(COLORS.length)];}
+   }
+   Color[] getSecrateCode()
+   {
         return colors;
-    }
+   }
 }
 
 
