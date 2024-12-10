@@ -61,7 +61,9 @@ class MasterMind {
     SecretColors secretCode;
 
     MasterMind() {
-        int size = InputHandler.getSecretSize();
+//        int size = InputHandler.getSecretSize();
+        int size = 3;
+        System.out.println("In this game you have to guess a random code consisting of 3 characters (r, g, y, b, o, p).");
         secretCode = new SecretColors(size);
         guessCode();
     }
