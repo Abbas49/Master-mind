@@ -4,7 +4,7 @@ class InputHandler {
     public static Scanner scan = new Scanner(System.in);
 
     public static int getSecretSize() {
-        System.out.print("Enter the size of the Secret code:");
+        System.out.print("Enter the size of the Secret code: at least 3");
         int size = scan.nextInt();
         return size;
     }
@@ -16,6 +16,7 @@ class InputHandler {
     public static boolean validateGuess() {
         return false;
     }
+
 }
 
 class OutputHandler {
