@@ -12,32 +12,34 @@ class InputHandler {
             return getSecretSize();
         }else return size;
     }
+
+    private static String getValidGuessInput(int size){
+        System.out.println("Enter  r, g, y, b, o, p : ");
+        String str = scan.next();
+        str = str.toLowerCase();
+        if(str.length() != size){
+            System.out.println("You should input " + size + " characters, try again.");
+            return getValidGuessInput(size);
+        }
+        for(int i = 0; i < size; i++){
+            char c = str.charAt(i);
+            if(c != 'r' && c!='g' && c!= 'y' && c!='b' && c!= 'o' &&c!='p'){
+                System.out.println("The character " + c + " is not valid, try again.");
+                return getValidGuessInput(size);
+            }
+        }
+        return str;
+    }
     public static Guess getGuess(int size) {
         System.out.print("Enter the guss: ");
         Guess guess= new Guess(getSecretSize()) ;
-          char c;
-          c= scan.next().charAt(0);
-        System.out.println("Enter  r, g, y, b, o, p : ");
+        String str = getValidGuessInput(size);
         for(int i = 0; i < size; i++){
-             c = scan.nextLine().charAt(0);
-            if( c != 'r' && c!='g' && c!= 'y' && c!='b' && c!= 'o' &&c!='p'){
-                System.out.println("this is unvalud colors Enter color again");
-                c = scan.nextLine().charAt(0);
-            }
-            guess.setColor(c);
+             char c = str.charAt(0);
+             guess.setColor(i, c);
         }
-
-
         return  guess;
     }
-    /*
-    scan input and make sure it is correct input
-    - right size
-    - right form
-    - right chars
-     */
-
-
 }
 
 class OutputHandler {
@@ -198,8 +200,9 @@ class Guess{
         }
         throw new IndexOutOfBoundsException("Invalid index color");
     }
-    public void setColor(char color){
-
+    public void setColor(int index, char colorChar){
+        Color color = charToColor(colorChar);
+        colors[index] = color;
     }
 
     Color[] getColors()
