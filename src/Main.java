@@ -14,14 +14,15 @@ class InputHandler {
         } else return size;
     }
 
-    private static String getValidGuessInput(int size) {
+    private static StringBuilder getValidGuessInput(int size) {
         System.out.println("Enter Guess: ");
         String str = scan.nextLine();
         str = str.toLowerCase();
-        String newStr="";
+        StringBuilder newStr = new StringBuilder(); // النص الجديد
+
         for (int i = 0; i < str.length(); i++) {
             if(str.charAt(i)!=' '){
-                 newStr=newStr + str.charAt(i);
+                 newStr.append(str.charAt(i));
             }
         }
         if (newStr.length() != size) {
@@ -37,13 +38,12 @@ class InputHandler {
         }
         return newStr;
     }
-
     public static Guess getGuess(int size) {
         Guess guess = new Guess(size);
-        String str = getValidGuessInput(size);
+        StringBuilder str = getValidGuessInput(size);
         for (int i = 0; i < size; i++) {
             char c = str.charAt(i);
-            guess.setColor(i, c);
+            guess.setColor(i,c);
         }
         return guess;
     }
