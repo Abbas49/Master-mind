@@ -18,6 +18,12 @@ class InputHandler {
         System.out.println("Enter Guess: ");
         String str = scan.nextLine();
         str = str.toLowerCase();
+        String newStr="";
+        for (int i = 0; i < str.length(); i++) {
+            if(str.charAt(i)!=' '){
+                 newStr=newStr + str.charAt(i);
+            }
+        }
         if (str.length() != size) {
             System.out.println("You should input " + size + " characters, try again.");
             return getValidGuessInput(size);
