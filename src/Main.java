@@ -197,6 +197,9 @@ class Guess{
         }
         throw new IndexOutOfBoundsException("Invalid index color");
     }
+    public void setColor(char color){
+
+    }
 
     Color[] getColors()
     {
