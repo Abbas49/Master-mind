@@ -7,7 +7,26 @@ class InputHandler {
     public static int getSecretSize() {
         System.out.print("Enter the size of the Secret code: at least 3");
         int size = scan.nextInt();
-        return size;
+        if(size < 3){
+            System.out.println("Secret code must be at least 3");
+            return getSecretSize();
+        }else return size;
+    }
+    public static String[] getGuss() {
+        System.out.print("Enter the guss: ");
+        int size= getSecretSize();
+        String[] colors = new String[size];
+        System.out.println("Enter colors red, green, yellow, blue, orange, purple : ");
+        for(int i = 0; i < size; i++){
+            colors[i] = scan.next();
+            if(!colors[i].equals("red")&&!colors[i].equals("green")&&!colors[i].equals("yellow")&&!colors[i].equals("blue")&&!colors[i].equals("orange")&&!colors[i].equals("purple")){
+                System.out.println("this is unvalud colors Enter color again");
+                colors[i] = scan.next();
+            }
+        }
+
+
+        return colors;
     }
     /*
     scan input and make sure it is correct input
