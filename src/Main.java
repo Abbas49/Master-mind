@@ -6,18 +6,31 @@ class InputHandler {
 
     // scan and return the secretCode size
     public static int getSecretSize() {
-        System.out.println("Enter the Difficulty level Easy=e,Medium=m,Hard=h ");
+        System.out.println("Enter the Difficulty level Easy=e,Medium=m,Hard=h,Custom=c");
         char D=scan.next().charAt(0);
-
+        System.out.println("easy=3 , medium=4 , hard=5");
         if(D=='e') {
-            System.out.println("Enter 3 colors");
             return 3;
         }else if(D=='m') {
-            System.out.println("Enter 4 colors");
             return 4;
         }else if(D=='h') {
-            System.out.println("Enter 5 colors");
             return 5;
+        }
+        else if(D=='c') {
+            System.out.println("Enter number of colors greater than 5");
+            int size=scan.nextInt();
+            if(size==3){
+                System.out.println("are you idiot or Stupid return from the First of the program and select easy");
+                   return getSecretSize();
+            }else if(size==4){
+                System.out.println("are you idiot or Stupid return from First of the program and select medium");
+                return getSecretSize();
+            }else if(size==5){
+                System.out.println("are you idiot or Stupid return from First of the program and select hard");
+                return getSecretSize();
+            }else{
+                return size;
+            }
         }
 
 
@@ -80,7 +93,6 @@ class MasterMind {
     MasterMind() {
 //        int size = InputHandler.getSecretSize();
         int size = InputHandler.getSecretSize();
-        System.out.println("In this game you have to guess a random code consisting of 3 characters (r, g, y, b, o, p).");
         secretCode = new SecretColors(size);
         if(DEBUG){
             System.out.println("You are now in Debuging mode, and your secret code is: " + secretCode.toString());
