@@ -189,12 +189,16 @@ class Guess{
     }
     // return the size of the secret code
     public int getSize(){
-        return 0;
+        return colors.length;
     }
     // return the object color of index n
     public Color getColor(int n){
-        return colors[n];
+        if (n >= 0 && n < colors.length) {
+            return colors[n];
+        }
+        throw new IndexOutOfBoundsException("Invalid index color");
     }
+
     Color[] getColors()
     {
         return colors;
