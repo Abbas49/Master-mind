@@ -14,20 +14,21 @@ class InputHandler {
     }
     public static Guess getGuess(int size) {
         System.out.print("Enter the guss: ");
-
         Guess guess= new Guess(getSecretSize()) ;
-         char g = scan.nextLine().charAt(0);
+          char c;
+          c= scan.next().charAt(0);
         System.out.println("Enter  r, g, y, b, o, p : ");
         for(int i = 0; i < size; i++){
-             g = scan.nextLine().charAt(0);
-            if( g != 'r' && g!='g' && g!= 'y' && g!='b' && g!= 'o' &&g!='p'){
+             c = scan.nextLine().charAt(0);
+            if( c != 'r' && c!='g' && c!= 'y' && c!='b' && c!= 'o' &&c!='p'){
                 System.out.println("this is unvalud colors Enter color again");
-                g = scan.nextLine().charAt(0);
+                c = scan.nextLine().charAt(0);
             }
+            guess.setColor(c);
         }
 
 
-        return new Guess(size);
+        return  guess;
     }
     /*
     scan input and make sure it is correct input
