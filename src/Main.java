@@ -33,10 +33,10 @@ class InputHandler {
     }
 
     public static Guess getGuess(int size) {
-        Guess guess = new Guess(getSecretSize());
+        Guess guess = new Guess(size);
         String str = getValidGuessInput(size);
         for (int i = 0; i < size; i++) {
-            char c = str.charAt(0);
+            char c = str.charAt(i);
             guess.setColor(i, c);
         }
         return guess;
@@ -61,7 +61,6 @@ class MasterMind {
     SecretColors secretCode;
 
     MasterMind() {
-        System.out.println("Enter the size of the Code");
         int size = InputHandler.getSecretSize();
         secretCode = new SecretColors(size);
         guessCode();
@@ -70,8 +69,13 @@ class MasterMind {
     public void guessCode() {
         Guess guess = InputHandler.getGuess(secretCode.getSize());
         GuessResult result = validateGuess(guess);
+        if(result.blackBalls == secretCode.getSize()){
+            System.out.println("Congratulations, you won!!!");
+            return;
+        }
         System.out.println("black: " + result.blackBalls);
         System.out.println("white: " + result.whiteBalls);
+        guessCode();
     }
 
     private GuessResult validateGuess(Guess guess) {
@@ -82,12 +86,12 @@ class MasterMind {
     }
 
     public void restartGame() {
-
+        System.out.println("Go implement the method restart game.");
     }
 
     public int numberOfPositionMatch(Guess guess) {
         String guessStr = guess.toString();
-        String secretStr = guess.toString();
+        String secretStr = secretCode.toString();
         int count = 0;
         for (int i = 0; i < secretStr.length(); i++) {
             if (guessStr.charAt(i) == secretStr.charAt(i)) {
@@ -101,8 +105,10 @@ class MasterMind {
         int[] guessColorsCount = new int[Color.colorsCount];
         int[] secretColorsCount = new int[Color.colorsCount];
         for (int i = 0; i < guess.getSize(); i++) {
-            guessColorsCount[guess.getColor(i).id]++;
-            secretColorsCount[secretCode.getColor(i).id]++;
+            if(guess.getColor(i).id != secretCode.getColor(i).id) {
+                guessColorsCount[guess.getColor(i).id]++;
+                secretColorsCount[secretCode.getColor(i).id]++;
+            }
         }
         int count = 0;
         for (int i = 0; i < guess.getSize(); i++) {
@@ -114,7 +120,8 @@ class MasterMind {
 
 class Color {
     public static Color red, green, yellow, blue, orange, purple;
-    public static int colorsCount = 0;
+    public static int colorsCount = 6;
+    public static char[] gameColors = {'r', 'g', 'y', 'b', 'o', 'p'};
     public int id;
     public String name;
     public char symbol;
@@ -122,8 +129,8 @@ class Color {
     Color(int id, String name) {
         this.id = id;
         this.name = name;
+        this.symbol = gameColors[id];
     }
-
     public String toString() {
         return name;
     }
@@ -147,21 +154,6 @@ class Guess {
 
     public Guess(int size) {
         colors = new Color[size];
-//        Scanner scanner = new Scanner(System.in);
-//        while (true) {
-//            System.out.println("your guess");
-//            String input = scanner.nextLine().toLowerCase(null);
-//
-//        if (validateInput(input , size)) {
-//            for(int i = 0 ; i < size ; i++){
-//                colors[i] = charToColor(input.charAt(i));
-//            }
-//        break;
-//        }else{
-//            System.out.println("invslid input");
-//        }
-//
-//        }
     }
 
     protected Color charToColor(char c) {
