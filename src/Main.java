@@ -6,7 +6,7 @@ class InputHandler {
 
     // scan and return the secretCode size
     public static int getSecretSize() {
-        System.out.println("Enter the Difficulty level Easy=e,Medium=n,Hard=h ");
+        System.out.println("Enter the Difficulty level Easy=e,Medium=m,Hard=h ");
         char D=scan.next().charAt(0);
 
         if(D=='e') {
@@ -38,9 +38,9 @@ class InputHandler {
                 return getSecretSize();
             }
         }
-        
 
-      return 0;
+
+      return getSecretSize();
     }
 
     private static StringBuilder getValidGuessInput(int size) {
@@ -98,7 +98,7 @@ class MasterMind {
 
     MasterMind() {
 //        int size = InputHandler.getSecretSize();
-        int size = 3;
+        int size = InputHandler.getSecretSize();
         System.out.println("In this game you have to guess a random code consisting of 3 characters (r, g, y, b, o, p).");
         secretCode = new SecretColors(size);
         if(DEBUG){
