@@ -12,10 +12,10 @@ class InputHandler {
             return getSecretSize();
         }else return size;
     }
-    public static Guess getGuss( ) {
+    public static Guess getGuess(int size) {
         System.out.print("Enter the guss: ");
-        int size= getSecretSize();
-        Guess guess= new Guess(size) ;
+
+        Guess guess= new Guess(getSecretSize()) ;
          char g = scan.nextLine().charAt(0);
         System.out.println("Enter  r, g, y, b, o, p : ");
         for(int i = 0; i < size; i++){
