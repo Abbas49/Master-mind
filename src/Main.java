@@ -6,12 +6,41 @@ class InputHandler {
 
     // scan and return the secretCode size
     public static int getSecretSize() {
-        System.out.print("Enter the size of the Secret code: at least 3");
-        int size = scan.nextInt();
-        if (size < 3) {
-            System.out.println("Secret code must be at least 3");
-            return getSecretSize();
-        } else return size;
+        System.out.println("Enter the Difficulty level Easy=e,Medium=n,Hard=h ");
+        char D=scan.next().charAt(0);
+
+        if(D=='e') {
+
+            System.out.println("Enter the size of the Secret code: at least from 3 to 5");
+            int size = scan.nextInt();
+            if(size>=3&&size<=5) {
+                return size;
+            }else{
+                System.out.println("Wrong size try again");
+                return getSecretSize();
+            }
+        }else if(D=='m') {
+            System.out.println("Enter the size of the Secret code: at least from 6 to 8");
+            int size = scan.nextInt();
+            if(size>=6&&size<=8) {
+                return size;
+            }else {
+                System.out.println("Wrong size try again");
+                return getSecretSize();
+            }
+        }else if(D=='h') {
+            System.out.println("Enter the size of the Secret code: at least from 8 ");
+            int size = scan.nextInt();
+            if(size>=8) {
+                return size;
+            }else {
+                System.out.println("Wrong size try again");
+                return getSecretSize();
+            }
+        }
+        
+
+      return 0;
     }
 
     private static StringBuilder getValidGuessInput(int size) {
