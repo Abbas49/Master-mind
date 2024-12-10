@@ -12,21 +12,22 @@ class InputHandler {
             return getSecretSize();
         }else return size;
     }
-    public static String[] getGuss() {
+    public static Guess getGuss( ) {
         System.out.print("Enter the guss: ");
         int size= getSecretSize();
-        String[] colors = new String[size];
-        System.out.println("Enter colors red, green, yellow, blue, orange, purple : ");
+        Guess guess= new Guess(size) ;
+         char g = scan.nextLine().charAt(0);
+        System.out.println("Enter  r, g, y, b, o, p : ");
         for(int i = 0; i < size; i++){
-            colors[i] = scan.next();
-            if(!colors[i].equals("red")&&!colors[i].equals("green")&&!colors[i].equals("yellow")&&!colors[i].equals("blue")&&!colors[i].equals("orange")&&!colors[i].equals("purple")){
+             g = scan.nextLine().charAt(0);
+            if( g != 'r' && g!='g' && g!= 'y' && g!='b' && g!= 'o' &&g!='p'){
                 System.out.println("this is unvalud colors Enter color again");
-                colors[i] = scan.next();
+                g = scan.nextLine().charAt(0);
             }
         }
 
 
-        return colors;
+        return new Guess(size);
     }
     /*
     scan input and make sure it is correct input
@@ -34,9 +35,7 @@ class InputHandler {
     - right form
     - right chars
      */
-    public static Guess getGuess(int size) {
-        return new Guess(size);
-    }
+
 
 }
 
