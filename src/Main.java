@@ -28,7 +28,10 @@ class InputHandler {
             }else if(size==5){
                 System.out.println("are you idiot or Stupid return from First of the program and select hard");
                 return getSecretSize();
-            }else{
+            }else if (size<3){
+                System.out.println("this is unvaid number");
+                return getSecretSize();
+            } else{
                 return size;
             }
         }
