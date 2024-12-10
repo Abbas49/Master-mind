@@ -125,7 +125,7 @@ class Color {
 class Guess{
     protected Color[] colors;
     protected static final Color[] COLORS ={
-            Color.red,Color.green,Color.yellow,Color.blue,Color.brown,Color.purple
+            Color.red,Color.green,Color.yellow,Color.blue,Color.orange,Color.purple
     };
     public Guess(int size){
         colors = new Color[size];
@@ -174,11 +174,18 @@ class Guess{
     }
     // return the string of the colors chars (no space in between)
     public String toString(){
-        return "";
+       StringBuilder sb = new StringBuilder();
+       for(Color color : colors){
+        sb.append(color.symbol);
+       }
+    return sb.toString();
     }
     // return the char of the color at the position n
     public char getChar(int n){
-        return 't';
+       if (n>=0 && n< colors.length) {
+         return colors[n].symbol;
+       }
+       throw new IndexOutOfBoundsException("Invalid index color");
     }
     // return the size of the secret code
     public int getSize(){
