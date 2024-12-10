@@ -59,12 +59,16 @@ class GuessResult {
 
 class MasterMind {
     SecretColors secretCode;
+    public static boolean DEBUG = false;
 
     MasterMind() {
 //        int size = InputHandler.getSecretSize();
         int size = 3;
         System.out.println("In this game you have to guess a random code consisting of 3 characters (r, g, y, b, o, p).");
         secretCode = new SecretColors(size);
+        if(DEBUG){
+            System.out.println("You are now in Debuging mode, and your secret code is: " + secretCode.toString());
+        }
         guessCode();
     }
 
@@ -94,6 +98,7 @@ class MasterMind {
     public int numberOfPositionMatch(Guess guess) {
         String guessStr = guess.toString();
         String secretStr = secretCode.toString();
+
         int count = 0;
         for (int i = 0; i < secretStr.length(); i++) {
             if (guessStr.charAt(i) == secretStr.charAt(i)) {
