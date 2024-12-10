@@ -80,7 +80,7 @@ class MasterMind{
     }
 }
 class Color {
-    public static Color red, green, yellow, blue, brown, purple;
+    public static Color red, green, yellow, blue, orange, purple;
     public static int colorsCount = 0;
     public int id;
     public String name;
@@ -99,7 +99,7 @@ class Color {
         green = new Color(1, "Green");
         yellow = new Color(2, "Yellow");
         blue = new Color(3, "Blue");
-        brown = new Color(4, "Brown");
+        orange = new Color(4, "orange");
         purple = new Color(5, "Purple");
     }
 }
@@ -110,6 +110,48 @@ class Guess{
     };
     public Guess(int size){
         colors = new Color[size];
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("your guess");
+            String input = scanner.nextLine().toLowerCase(null);
+        
+        if (validateInput(input , size)) {
+            for(int i = 0 ; i < size ; i++){
+                colors[i] = charToColor(input.charAt(i));
+            }
+        break;
+        }else{
+            System.out.println("invslid input");
+        }
+        
+        }
+    }
+    protected Color charToColor(char c){
+        switch (c) {
+            case 'r':
+                return Color.red;
+                case 'g':
+                return Color.green;
+                case 'b':
+                return Color.blue;
+                case 'o':
+                return Color.orange;
+                case 'p':
+                return Color.purple;
+                case 'y':
+                return Color.yellow;
+    
+            default:
+            throw new IllegalArgumentException("invalid char"+c);
+        }
+    }
+    protected boolean validateInput(String input, int size){
+        if (input.length() != size)return false;
+          for (char c : input.toCharArray()){
+            if("rgbopy".indexOf(c) == -1) return false;
+          }
+            return true;
+        
     }
     // return the string of the colors chars (no space in between)
     public String toString(){
