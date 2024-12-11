@@ -91,10 +91,10 @@ class GuessResult {
 
 class MasterMind {
     SecretColors secretCode;
+    public int attempts = 10;
     public static boolean DEBUG = false;
 
     MasterMind() {
-//        int size = InputHandler.getSecretSize();
         int size = InputHandler.getSecretSize();
         secretCode = new SecretColors(size);
         if(DEBUG){
@@ -104,28 +104,39 @@ class MasterMind {
     }
 
     public void guessCode() {
+        if(checkAttempts()) return;
         Guess guess = InputHandler.getGuess(secretCode.getSize());
         GuessResult result = validateGuess(guess);
         if(result.blackBalls == secretCode.getSize()){
             System.out.println("Congratulations, you won!!!");
+            restartGame();
             return;
         }
         System.out.println("black: " + result.blackBalls);
         System.out.println("white: " + result.whiteBalls);
         guessCode();
     }
-
+    private boolean checkAttempts(){
+        if(attempts == 0){
+            System.out.println("You lost, press enter to restart.");
+            InputHandler.scan.nextLine();
+            restartGame();
+            return true;
+        }
+        System.out.println(attempts+ " attempts remaining.");
+        attempts--;
+        return false;
+    }
     private GuessResult validateGuess(Guess guess) {
         GuessResult result = new GuessResult(0, 0);
         result.blackBalls = numberOfPositionMatch(guess);
         result.whiteBalls = numberOfColorMatch(guess);
         return result;
     }
-
     public void restartGame() {
         System.out.println("Go implement the method restart game.");
+        new MasterMind();
     }
-
     public int numberOfPositionMatch(Guess guess) {
         String guessStr = guess.toString();
         String secretStr = secretCode.toString();
