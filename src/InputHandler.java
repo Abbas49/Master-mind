@@ -7,6 +7,7 @@ public class InputHandler {
     public static int getSecretSize() {
         System.out.println("Enter the Difficulty level Easy=e,Medium=m,Hard=h,Custom=c");
         char D=scan.next().charAt(0);
+        if(D!='c'){
         System.out.println("easy=3 , medium=4 , hard=5");
         if(D=='e') {
             return 3;
@@ -15,22 +16,14 @@ public class InputHandler {
         }else if(D=='h') {
             return 5;
         }
-        else if(D=='c') {
-            System.out.println("Enter number of colors greater than 5");
-            int size=scan.nextInt();
-            if(size==3){
-                System.out.println("are you idiot or Stupid return from the First of the program and select easy");
-                return getSecretSize();
-            }else if(size==4){
-                System.out.println("are you idiot or Stupid return from First of the program and select medium");
-                return getSecretSize();
-            }else if(size==5){
-                System.out.println("are you idiot or Stupid return from First of the program and select hard");
-                return getSecretSize();
-            }else if (size<3){
+        }
+        if(D=='c') {
+            System.out.println("Enter the number you need");
+            int size = scan.nextInt();
+            if (size < 3) {
                 System.out.println("this is unvaid number");
                 return getSecretSize();
-            } else{
+            } else {
                 return size;
             }
         }
