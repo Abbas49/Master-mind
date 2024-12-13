@@ -1,6 +1,6 @@
 package com.example.demo.lib;
 
-class GuessResult {
+public class GuessResult {
     public int blackBalls = 0;
     public int whiteBalls = 0;
 

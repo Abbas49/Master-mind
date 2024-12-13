@@ -1,6 +1,6 @@
 
 package com.example.demo.lib;
-class Guess {
+public class Guess {
     protected Color[] colors;
     protected static final Color[] COLORS = {
             Color.red, Color.green, Color.yellow, Color.blue, Color.orange, Color.purple
@@ -8,6 +8,12 @@ class Guess {
 
     public Guess(int size) {
         colors = new Color[size];
+    }
+    public Guess(String str){
+        colors = new Color[str.length()];
+        for(int i = 0; i < str.length(); i++){
+            setColor(i, str.charAt(i));
+        }
     }
 
     protected Color charToColor(char c) {

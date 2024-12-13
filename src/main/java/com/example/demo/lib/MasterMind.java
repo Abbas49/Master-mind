@@ -1,17 +1,17 @@
 package com.example.demo.lib;
-class MasterMind {
+public class MasterMind {
 
     SecretColors secretCode;
     public int attempts = 10;
-    public static boolean DEBUG = false;
+    public static boolean DEBUG = true;
 
-    MasterMind() {
-        int size = InputHandler.getSecretSize();
+    public MasterMind() {
+        int size = 4;
         secretCode = new SecretColors(size);
         if(DEBUG){
             System.out.println("You are now in Debuging mode, and your secret code is: " + secretCode.toString());
         }
-        guessCode();
+//        guessCode();
     }
 
     public void guessCode() {
@@ -38,7 +38,7 @@ class MasterMind {
         attempts--;
         return false;
     }
-    private GuessResult validateGuess(Guess guess) {
+    public GuessResult validateGuess(Guess guess) {
         GuessResult result = new GuessResult(0, 0);
         result.blackBalls = numberOfPositionMatch(guess);
         result.whiteBalls = numberOfColorMatch(guess);
@@ -71,7 +71,7 @@ class MasterMind {
             }
         }
         int count = 0;
-        for (int i = 0; i < guess.getSize(); i++) {
+        for (int i = 0; i < guessColorsCount.length; i++) {
             count += Math.min(guessColorsCount[i], secretColorsCount[i]);
         }
         return count;
