@@ -12,6 +12,10 @@ import javafx.scene.shape.Circle;
 public class GUIController {
 
     public Label resultLabel;
+    public Label attemptsLeftLabel;
+    public Button btnNewGame;
+    public Button btnSubmit;
+    public Button btnReset;
     @FXML
     private Button btnRed, btnYellow, btnBlue, btnPurple, btnGreen, btnOrange;
 
@@ -40,8 +44,19 @@ public class GUIController {
     }
     @FXML
     public void submit(){
-        GuessResult result = game.validateGuess(new Guess(getColorsInString()));
-        resultLabel.setText("Black: " + result.blackBalls + "   White: " +result.whiteBalls);
+        if(!Guess.isValid(getColorsInString(), 4)){
+            setResultLabel("Please select colors.");
+            return;
+        }
+        setAttemptLabel(--game.attempts);
+        GuessResult result = game.checkGuess(new Guess(getColorsInString()));
+        if(game.attempts == 0){
+            handleLose();
+        }else if(result.blackBalls == 4){
+            handleWin();
+        }else {
+            setResultLabel("Black: " + result.blackBalls + "   White: " + result.whiteBalls);
+        }
     }
 
     private String getColorsInString(){
@@ -51,6 +66,9 @@ public class GUIController {
             result.append(ballSymbol);
         }
         return result.toString();
+    }
+    private void setResultLabel(String text){
+        resultLabel.setText(text);
     }
     private char colorToChar(String x){
         switch(x){
@@ -66,6 +84,33 @@ public class GUIController {
         }
     }
 
+    private void handleWin(){
+        setResultLabel("You Won!!");
+        endGame();
+    }
+    private void handleLose(){
+        setResultLabel("You Lost.");
+        endGame();
+    }
+    private void endGame(){
+        btnNewGame.setManaged(true);
+        btnNewGame.setVisible(true);
+        btnSubmit.setManaged(false);
+        btnSubmit.setVisible(false);
+        btnReset.setManaged(false);
+        btnReset.setVisible(false);
+    }
+    @FXML
+    public void newGame(){
+        btnNewGame.setManaged(false);
+        btnNewGame.setVisible(false);
+        btnSubmit.setManaged(true);
+        btnSubmit.setVisible(true);
+        btnReset.setManaged(true);
+        btnReset.setVisible(true);
+        resetGame();
+    }
+
     private void colorBall(Color color) {
         if (currentBallIndex < balls.length) {
             balls[currentBallIndex].setFill(color);
@@ -74,12 +119,21 @@ public class GUIController {
             System.out.println("All balls are filled!");
         }
     }
+    public void setAttemptLabel(int attempt){
+        attemptsLeftLabel.setText("Attempts Left: " + attempt);
+    }
 
     @FXML
-    public void resetGame() {
+    public void resetColors() {
         for (Circle ball : balls) {
             ball.setFill(Color.WHITE);
         }
         currentBallIndex = 0;
+    }
+    private void resetGame(){
+        resetColors();
+        game = new MasterMind();
+        setAttemptLabel(game.attempts);
+        setResultLabel("");
     }
 }

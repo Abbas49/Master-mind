@@ -36,7 +36,7 @@ public class Guess {
         }
     }
 
-    protected boolean validateInput(String input, int size) {
+    public static boolean isValid(String input, int size) {
         if (input.length() != size) return false;
         for (char c : input.toCharArray()) {
             if ("rgbopy".indexOf(c) == -1) return false;

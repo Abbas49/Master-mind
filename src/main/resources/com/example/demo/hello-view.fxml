@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="319.0" prefWidth="554.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.GUIController">
-    <!-- Center the button container horizontally -->
     <HBox alignment="CENTER" layoutX="50" layoutY="20" spacing="10" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
         <Button fx:id="btnRed" style="-fx-background-color: red; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10px 15px; -fx-background-radius: 10px; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 0, 0);" text="Red" />
         <Button fx:id="btnYellow" style="-fx-background-color: yellow; -fx-text-fill: black; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10px 15px; -fx-background-radius: 10px; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 0, 0);" text="Yellow" />
@@ -18,7 +17,6 @@
         <Button fx:id="btnOrange" style="-fx-background-color: orange; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10px 15px; -fx-background-radius: 10px; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 0, 0);" text="Orange" />
     </HBox>
 
-    <!-- Center the guess row (balls) horizontally -->
     <HBox alignment="CENTER" layoutY="92.0" spacing="15" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
         <Circle fx:id="ball1" fill="white" radius="20" stroke="black" />
         <Circle fx:id="ball2" fill="white" radius="20" stroke="black" />
@@ -26,14 +24,19 @@
         <Circle fx:id="ball4" fill="white" radius="20" stroke="black" />
     </HBox>
 
-    <!-- Center the Submit and Reset buttons -->
+    <Label fx:id="attemptsLeftLabel" alignment="CENTER" layoutY="157.0" text="Attempts Left: 10" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+
     <HBox alignment="CENTER" layoutY="187.0" spacing="20" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
         <Button fx:id="btnSubmit" onAction="#submit" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 10px 20px; -fx-background-radius: 10px; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 0, 0);" text="Submit" />
-        <Button fx:id="btnReset" onAction="#resetGame" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 10px 20px; -fx-background-radius: 10px; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 0, 0);" text="Reset" />
+      <Button fx:id="btnNewGame" onAction="#newGame" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 10px 20px; -fx-background-radius: 10px; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 0, 0);" text="New game" visible="false" managed="false"/>
+        <Button fx:id="btnReset" onAction="#resetColors" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 10px 20px; -fx-background-radius: 10px; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5, 0, 0);" text="Reset" />
     </HBox>
 
-    <!-- Result Label, Centered in the bottom -->
-    <Label fx:id="resultLabel" alignment="CENTER" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" contentDisplay="CENTER" layoutY="258.0" prefHeight="47.0" prefWidth="0.0" textAlignment="CENTER">
+    <Label fx:id="resultLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="258.0" prefHeight="47.0" prefWidth="0.0" textAlignment="CENTER" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
         <font>
             <Font size="32.0" />
         </font>

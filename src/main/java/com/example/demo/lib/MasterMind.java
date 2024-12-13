@@ -17,7 +17,7 @@ public class MasterMind {
     public void guessCode() {
         if(checkAttempts()) return;
         Guess guess = InputHandler.getGuess(secretCode.getSize());
-        GuessResult result = validateGuess(guess);
+        GuessResult result = checkGuess(guess);
         if(result.blackBalls == secretCode.getSize()){
             System.out.println("Congratulations, you won!!!");
             restartGame();
@@ -38,7 +38,7 @@ public class MasterMind {
         attempts--;
         return false;
     }
-    public GuessResult validateGuess(Guess guess) {
+    public GuessResult checkGuess(Guess guess) {
         GuessResult result = new GuessResult(0, 0);
         result.blackBalls = numberOfPositionMatch(guess);
         result.whiteBalls = numberOfColorMatch(guess);
