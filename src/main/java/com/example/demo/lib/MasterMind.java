@@ -1,6 +1,5 @@
 package com.example.demo.lib;
 public class MasterMind {
-
     SecretColors secretCode;
     public int attempts = 10;
     public static boolean DEBUG = true;
@@ -9,44 +8,14 @@ public class MasterMind {
         int size = 4;
         secretCode = new SecretColors(size);
         if(DEBUG){
-            System.out.println("You are now in Debuging mode, and your secret code is: " + secretCode.toString());
+            System.out.println("You are now in Debugging mode, and your secret code is: " + secretCode.toString());
         }
-//        guessCode();
-    }
-
-    public void guessCode() {
-        if(checkAttempts()) return;
-        Guess guess = InputHandler.getGuess(secretCode.getSize());
-        GuessResult result = checkGuess(guess);
-        if(result.blackBalls == secretCode.getSize()){
-            System.out.println("Congratulations, you won!!!");
-            restartGame();
-            return;
-        }
-        System.out.println("black: " + result.blackBalls);
-        System.out.println("white: " + result.whiteBalls);
-        guessCode();
-    }
-    private boolean checkAttempts(){
-        if(attempts == 0){
-            System.out.println("You lost, press enter to restart.");
-            InputHandler.scan.nextLine();
-            restartGame();
-            return true;
-        }
-        System.out.println(attempts+ " attempts remaining.");
-        attempts--;
-        return false;
     }
     public GuessResult checkGuess(Guess guess) {
         GuessResult result = new GuessResult(0, 0);
         result.blackBalls = numberOfPositionMatch(guess);
         result.whiteBalls = numberOfColorMatch(guess);
         return result;
-    }
-    public void restartGame() {
-        System.out.println("Go implement the method restart game.");
-        new MasterMind();
     }
     public int numberOfPositionMatch(Guess guess) {
         String guessStr = guess.toString();

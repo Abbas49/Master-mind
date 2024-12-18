@@ -116,7 +116,9 @@ public class GUIController {
             balls[currentBallIndex].setFill(color);
             currentBallIndex++;
         } else {
-            System.out.println("All balls are filled!");
+            if(MasterMind.DEBUG) {
+                System.out.println("All balls are filled!");
+            }
         }
     }
     public void setAttemptLabel(int attempt){
