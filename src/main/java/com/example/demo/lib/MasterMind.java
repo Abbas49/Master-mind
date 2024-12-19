@@ -2,7 +2,7 @@ package com.example.demo.lib;
 public class MasterMind {
     SecretColors secretCode;
     public int attempts = 10;
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = false;
 
     public MasterMind() {
         int size = 4;

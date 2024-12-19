@@ -17,7 +17,6 @@ public class Color {
         return name;
     }
 
-    // color
     static {
         red = new Color(0, "Red");
         green = new Color(1, "Green");

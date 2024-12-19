@@ -44,7 +44,6 @@ public class Guess {
         return true;
     }
 
-    // return the string of the colors chars (no space in between)
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Color color : colors) {
@@ -53,7 +52,6 @@ public class Guess {
         return sb.toString();
     }
 
-    // return the char of the color at the position n
     public char getChar(int n) {
         if (n >= 0 && n < colors.length) {
             return colors[n].symbol;
@@ -61,12 +59,10 @@ public class Guess {
         throw new IndexOutOfBoundsException("Invalid index color");
     }
 
-    // return the size of the secret code
     public int getSize() {
         return colors.length;
     }
 
-    // return the object color of index n
     public Color getColor(int n) {
         if (n >= 0 && n < colors.length) {
             return colors[n];
